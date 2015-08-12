@@ -3,9 +3,9 @@
 	微信公众帐号(vimtips)开发者模式,默认用户输入任何文字，均返回同一个图文信息,链接地址为Web site,可以根据变量$keyword，即用户输入的信息，进行判断，从而返回相应的信息
 	Ubuntu,MySQL,PHP,Openresty,Lua
 	/home/ywgx/
-	0/ 1/ bin/ media/ log/ lib/
+	0/ 1/ 2/ bin/ media/ log/ lib/
 */
-define("TOKEN", "uber");
+define("TOKEN", "UBER");
 define("SERVER",'vimtips.mobi');
 define("MUS_SERVER",'vimtips.mobi');
 define("PIC_SERVER",'vimtips.mobi');
