@@ -6,7 +6,7 @@
   0     web服务器
   1     app逻辑服务
   2     db或者数据引擎相关
-  bin   启动脚本
+  bin   启动脚本(包含ctl.sh 部署启停,cron.sh 服务, rootd.sh 配置加载, safed.sh 主机安全防御, sentinel.sh 哨兵)
   media 静态文件
   lib   公用文件
   log   应用日志
