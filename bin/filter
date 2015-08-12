@@ -1,0 +1,84 @@
+*filter
+
+:INPUT ACCEPT
+
+-N I_base-allow-icmp-in
+
+-A I_base-allow-icmp-in -i eth1 -p icmp -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT
+
+-A INPUT -j I_base-allow-icmp-in
+
+-N I_base-allow-tcp-est-in
+
+-A I_base-allow-tcp-est-in -i eth1 -p tcp --dport 1024:65535 -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+-A INPUT -j I_base-allow-tcp-est-in
+
+
+-N I_base-allow-udp-est-in
+
+-A I_base-allow-udp-est-in -i eth1 -p udp --dport 1024:65535 -j ACCEPT
+
+-A INPUT -j I_base-allow-udp-est-in
+
+-N I_base-allow-dns-out
+
+-A I_base-allow-dns-out -i eth1 -p udp --sport 53 -j ACCEPT
+
+-A INPUT -j I_base-allow-dns-out
+
+-N I_base-allow-syslog-out
+
+-A I_base-allow-syslog-out  -i eth1 -p udp --sport 514 -j ACCEPT
+
+-A INPUT -j I_base-allow-syslog-out
+
+-N I_base-allow-9000-in
+-A I_base-allow-9000-in -i eth1 -p tcp --dport 9000 -s 42.120.72.0/22 -j ACCEPT 
+-A I_base-allow-9000-in -i eth1 -p tcp --dport 9000 -s 121.196.0.68   -j ACCEPT 
+-A INPUT -j I_base-allow-9000-in
+
+
+-N I_base-allow-ssh-in
+
+-A I_base-allow-ssh-in -i eth1 -p tcp --dport 22 -s 42.120.72.0/22 -j ACCEPT 
+
+-A I_base-allow-ssh-in -i eth1 -p tcp --dport 22 -s 121.0.29.0/24 -j ACCEPT 
+
+-A I_base-allow-ssh-in -i eth1 -p tcp --dport 22 -s 182.92.253.0/27 -j ACCEPT 
+-A I_base-allow-ssh-in -i eth1 -p tcp --dport 22 -s 42.120.84.0/24 -j ACCEPT
+-A I_base-allow-ssh-in -i eth1 -p tcp --dport 22 -s 42.120.110.0/24 -j ACCEPT
+-A I_base-allow-ssh-in -i eth1 -p tcp --dport 22 -s 42.120.145.0/24 -j ACCEPT
+-A I_base-allow-ssh-in -i eth1 -p tcp --dport 22 -s 42.120.146.0/24 -j ACCEPT
+-A I_base-allow-ssh-in -i eth1 -p tcp --dport 22 -s 42.120.174.0/23 -j ACCEPT
+-A I_base-allow-ssh-in -i eth1 -p tcp --dport 22 -s 42.156.201.0/24 -j ACCEPT
+-A I_base-allow-ssh-in -i eth1 -p tcp --dport 22 -s 42.156.243.0/24 -j ACCEPT
+-A I_base-allow-ssh-in -i eth1 -p tcp --dport 22 -s 110.75.14.0/24 -j ACCEPT
+-A I_base-allow-ssh-in -i eth1 -p tcp --dport 22 -s 110.75.16.0/24 -j ACCEPT
+-A I_base-allow-ssh-in -i eth1 -p tcp --dport 22 -s 110.75.20.0/24 -j ACCEPT
+-A I_base-allow-ssh-in -i eth1 -p tcp --dport 22 -s 110.75.24.0/22 -j ACCEPT
+-A I_base-allow-ssh-in -i eth1 -p tcp --dport 22 -s 110.75.36.0/23 -j ACCEPT
+-A I_base-allow-ssh-in -i eth1 -p tcp --dport 22 -s 110.75.86.0/23 -j ACCEPT
+-A I_base-allow-ssh-in -i eth1 -p tcp --dport 22 -s 110.75.105.0/24 -j ACCEPT
+-A I_base-allow-ssh-in -i eth1 -p tcp --dport 22 -s 110.75.106.0/24 -j ACCEPT
+-A I_base-allow-ssh-in -i eth1 -p tcp --dport 22 -s 110.75.216.251/32 -j ACCEPT
+-A I_base-allow-ssh-in -i eth1 -p tcp --dport 22 -s 110.75.216.252/30 -j ACCEPT
+-A I_base-allow-ssh-in -i eth1 -p tcp --dport 22 -s 121.0.28.0/24 -j ACCEPT
+-A I_base-allow-ssh-in -i eth1 -p tcp --dport 22 -s 122.225.224.214/32 -j ACCEPT
+-A I_base-allow-ssh-in -i eth1 -p tcp --dport 22 -s 140.205.84.0/23 -j ACCEPT
+-A I_base-allow-ssh-in -i eth1 -p tcp --dport 22 -s 140.205.86.0/24 -j ACCEPT
+-A INPUT -j I_base-allow-ssh-in
+
+-N I_tcp-deny-all
+
+-A I_tcp-deny-all  -i eth1 -p tcp -j DROP
+
+-A INPUT -j I_tcp-deny-all
+
+-N I_udp-deny-all
+
+-A I_udp-deny-all  -i eth1 -p udp -j DROP
+
+-A INPUT -j I_udp-deny-all
+
+COMMIT
